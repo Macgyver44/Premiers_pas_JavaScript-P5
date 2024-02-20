@@ -11,10 +11,12 @@
 	<link
 		href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Roboto+Slab:wght@400;900&display=swap"
 		rel="stylesheet">
+	<script src="assets/config.js" defer></script>
 	<script src="assets/script.js" defer></script>
+	<script src="assets/main.js" defer></script>
 </head>
 
-<body>
+<body onload="slide()">
 	<header class="container">
 		<h1>
 			<img class="logo" src="./assets/images/logo.png" alt="Print it ! Impressions d'entreprises">
@@ -23,33 +25,20 @@
 	</header>
 	<main>
 		<div id="banner">
-			<!-- <div class="carousel">
-				<div class="item active">
-					<img src="assets/images/slideshow/slide1.jpg" alt="Image 1" />
-					<p class="caption">Impressions tous formats <span>en boutique et en ligne</span></p>
-				</div>
-				<div class="item">
-					<img src="assets/images/slideshow/slide2.jpg" alt="Image 2" />
-					<p class="caption">Tirages haute définition grand format <span>pour vos bureaux et events</span></p>
-				</div>
-				<div class="item">
-					<img src="assets/images/slideshow/slide3.jpg" alt="Image 3" />
-					<p class="caption">Grand choix de couleurs <span>de CMJN aux pantones</span></p>
-				</div>
-				<div class="item">
-					<img src="assets/images/slideshow/slide4.png" alt="Image 4" />
-					<p class="caption">Autocollants <span>avec découpe laser sur mesure</span></p>
-				</div>
-		</div>-->
+			<img src="assets/images/slideshow/slide1.jpg" alt="Image 1" class="banner-img">
+			<img src="assets/images/slideshow/slide2.jpg" alt="Image 2" class="banner-img">
+			<img src="assets/images/slideshow/slide3.jpg" alt="Image 3" class="banner-img">
+			<img src="assets/images/slideshow/slide4.png" alt="Image 4" class="banner-img">
 
-			<img class="banner-img" src="assets/images/slideshow/slide2.jpg" alt="Banner Print-it">
-			<p>Impressions tous formats <span>en boutique et en ligne</span></p>
 			<div class="arrow">
-				<img class="arrow_left" src="assets/images/arrow_left.png"></img>
-				<img class="arrow_right" src="assets/images/arrow_right.png"></img>
+				<img class="arrow_left" onclick="slideindex(-1)" src="assets/images/arrow_left.png"></img>
+				<img class="arrow_right" onclick="slideindex(1)" src="assets/images/arrow_right.png"></img>
 			</div>
 			<div class="dots">
-
+				<span class="dot" onclick="showimg(0)"></span>
+				<span class="dot" onclick="showimg(1)"></span>
+				<span class="dot" onclick="showimg(2)"></span>
+				<span class="dot" onclick="showimg(3)"></span>
 			</div>
 		</div>
 		<section id="about-us" class="container">
