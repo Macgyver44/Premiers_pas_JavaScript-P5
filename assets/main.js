@@ -29,7 +29,12 @@ function slideindex(i) {
     showimg(index);
     showtxt(index);
 }
-
+function showtxt(index) {
+    console.log("position dans showtxt:", index); // Afficher la valeur de l'index
+    let bannerImages = document.getElementsByClassName("banner-slide");
+    let textOverlay = bannerImages[index].getElementsByClassName("text-overlay")[0];
+    textOverlay.innerHTML = txt[index].tagLine;
+}
 
 
 function showimg(index) {

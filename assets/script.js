@@ -27,7 +27,12 @@ function slideindex(i) {// Fonction pour changer droite ou gauche +1 ou -1 l'ind
 	showimg(index);// Appelle la fonction showimg() pour afficher l'image correspondant au nouvel index
 	showtxt(index);// appelle de la fonction showtxt pour afficher le texte des images.
 }
-
+function showtxt(index) {
+	console.log("position dans showtxt:", index); // Afficher la valeur de l'index
+	let bannerImages = document.getElementsByClassName("banner-slide");
+	let textOverlay = bannerImages[index].getElementsByClassName("text-overlay")[0];
+	textOverlay.innerHTML = txt[index].tagLine;
+}
 function showimg(index) {// Fonction pour afficher une image spécifique du diaporama en fonction de son index
 	var x = document.getElementsByClassName("banner-slide");// Sélectionne toutes les images du diaporama par leur classe "banner-slide" et les stocke dans la variable x
 	var y = document.getElementsByClassName("dot");// Sélectionne tous les indicateurs de position par leur classe "dot" et les stocke dans la variable y
