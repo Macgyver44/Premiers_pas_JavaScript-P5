@@ -209,6 +209,15 @@ header {
 	position: relative;
 }
 
+.banner-slide {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -1;
+	object-fit: cover;
+	object-position: center;
+}
+
 .banner-img {
 	position: absolute;
 	width: 100%;
@@ -263,7 +272,7 @@ header {
 	align-items: center;
 	justify-content: center;
 	gap: 10px;
-	transform: translateX(-50%);
+
 }
 
 .dot {
@@ -288,6 +297,7 @@ header {
 
 /* Fin du code CSS pour le carousel */
 #banner p {
+	position: relative;
 	font-family: 'Roboto Slab', sans-serif;
 	font-weight: 900;
 	font-size: 50px;
@@ -295,6 +305,24 @@ header {
 	color: white;
 	text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 	text-align: center;
+}
+
+#banner .text-overlay {
+	position: absolute;
+	/* Position absolue par rapport au conteneur parent */
+	top: 50%;
+	/* Placez le texte verticalement au centre de l'image */
+	left: 50%;
+	/* Placez le texte horizontalement au centre de l'image */
+	transform: translate(-50%, -50%);
+	/* Déplacez le texte de moitié de sa propre largeur et hauteur vers le haut et la gauche pour le centrer */
+
+	color: #fff;
+	/* Couleur du texte */
+	padding: 10px;
+	/* Ajoutez un peu de rembourrage pour un meilleur espacement */
+	text-align: center;
+	/* Centrez le texte horizontalement */
 }
 
 #banner span {

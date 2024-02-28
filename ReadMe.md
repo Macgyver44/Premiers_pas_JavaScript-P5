@@ -1,23 +1,20 @@
 # Print-It WebSite v.1
 Programmer en utilisant les fondamentaux de JavaScript
 
-Afin de pouvoir avoir un carrousel dynamique, vous allez commencer par ajouter les flèches en mode statique. Elles vous permettront de gérer la navigation entre les images du carrousel.
+voici une explication technique détaillée du fonctionnement du programme :
 
-Analysez le code HTML et CSS à la recherche des éléments déjà présents sur le site.
-Ajoutez les images des flèches pour pouvoir naviguer dans le carrousel.
+1. **Initialisation :** Au démarrage, le programme initialise la variable `index` à zéro, représentant l'index de l'image actuellement affichée.
 
-Vous avez les flèches présentes dans la bannière ? C’est un bon début ! Rendez vos flèches interactives afin de pouvoir gérer le changement des images de notre carrousel.
+2. **Fonction Slide :** Une fonction appelée `slide()` est définie pour démarrer le défilement automatique du diaporama. Elle utilise `setInterval()` pour appeler la fonction `slideindex(1)` toutes les 3000 millisecondes.
 
-Mettre un event listener sur chacune des flèches. Ajouter un console.log ou une alert() pour tester le fonctionnement des event listeners. S’assurer qu’on peut différencier le clic sur le bouton gauche du clic sur le bouton droit.
+3. **Fonction Slideindex :** La fonction `slideindex(i)` est appelée lorsque l'utilisateur clique sur les flèches gauche ou droite. Elle ajuste l'index de l'image en ajoutant ou en soustrayant la valeur de `i`, puis appelle `showimg(index)` pour afficher l'image correspondante. Elle affiche également le texte associé en appelant `showtxt(index)`.
 
-Maintenant que nous écoutons le clic sur les flèches, passons à un autre élément de l’interface : les bullets points. Ils permettront à l’utilisateur de savoir sur quelle slide il se trouve.
+4. **Gestion des flèches :** Les clics sur les flèches gauche et droite sont détectés à l'aide de `document.querySelector()` pour sélectionner les éléments HTML correspondants, puis des fonctions anonymes sont attachées à ces événements pour appeler `slideindex(-1)` et `slideindex(1)` respectivement.
 
-Ajouter les bullet points sur la partie basse du slider. Il nous faut un point par image contenue dans le slider. Une fois les points affichés, différencier le point qui signale la diapositive en cours de visionnage : ce sera la première. Dans le CSS, le point en cours a une classe spécifique.
+5. **Fonction Showimg :** Cette fonction affiche l'image correspondant à l'index spécifié en ajustant les classes CSS pour masquer ou afficher l'image et en mettant à jour l'apparence des indicateurs de position. Elle prend en compte les cas où l'index dépasse les limites du nombre d'images disponibles.
 
-Vous avez maintenant tous les éléments nécessaires à la navigation dans notre carrousel, félicitations. Il est grand temps d’ajouter nos images !
+6. **Gestion des points :** Les clics sur les points de position sont gérés en bouclant à travers chaque point avec `forEach()` et en attachant un gestionnaire d'événements à chacun pour appeler `showimg(index)` avec l'index correspondant.
 
-Au clic sur la flèche droite : on change le bullet point actif au suivant ; on change l’image ; on change le texte correspondant à l’image. Au clic sur la flèche gauche, nous faisons la même chose mais pour les éléments précédents.
+7. **Fonction Showtxt :** Cette fonction affiche le texte associé à l'image actuellement affichée en sélectionnant l'élément HTML approprié et en mettant à jour son contenu.
 
-À ce stade, les images du carrousel défilent, nous sommes presque arrivés au bout ! Il est temps maintenant de corriger nos derniers bugs, et de faire en sorte que notre carrousel tourne en boucle indéfiniment. Nous allons donc ajouter des conditions.
-
-Si on est à la dernière image et que l’on clique à droite : on affiche la première image ; le point sélectionné est le premier. Si on est à la première image et qu’on clique à gauche : on affiche la dernière image ; le point sélectionné est le dernier. Dans tous les cas, le texte change en accord avec l’image montrée.
+En résumé, le programme utilise des fonctions JavaScript pour gérer l'interaction utilisateur, afficher les images et leur texte associé, et contrôler le défilement automatique du diaporama.

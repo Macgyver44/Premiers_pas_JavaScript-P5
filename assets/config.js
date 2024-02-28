@@ -6,7 +6,7 @@
  *********************************************************************************/
 
 // Déclaration des tableaux contenant les listes des phrases à afficher dans le carousel
-const slides = [
+const txt = [
     {
         "image": "slide1.jpg",
         "tagLine": "Impressions tous formats <span>en boutique et en ligne</span>"
@@ -24,3 +24,8 @@ const slides = [
         "tagLine": "Autocollants <span>avec découpe laser sur mesure</span>"
     }
 ]
+
+
+
+
+

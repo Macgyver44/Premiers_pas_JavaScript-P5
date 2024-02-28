@@ -1,56 +1,56 @@
-// Déclaration de la variable index qui représente l'index de l'image actuellement affichée
-var index = 0;
+var index = 0;// Déclaration de la variable index qui représente l'index de l'image actuellement affichée
+slide(); // Appel de la fonction slide() lors du chargement de la page pour démarrer le défilement automatique du diaporama
 
-// Appel de la fonction showimg() lors du chargement de la page pour afficher la première image
-showimg(index);
 
-// Fonction pour changer l'index de l'image et afficher la nouvelle image
-function slideindex(i) {
-	// Incrémente ou décrémente l'index en fonction de la valeur de i
-	index += i;
+// Ajout du code pour gérer les clics sur les flèches
+document.querySelector('.arrow_left').onclick = function () {
+	slideindex(-1);
+	console.log("fleche left=", slideindex);
+};
 
-	// Appelle la fonction showimg() pour afficher l'image correspondant au nouvel index
-	showimg(index);
+document.querySelector('.arrow_right').onclick = function () {
+	console.log("fleche right=", slideindex);
+	slideindex(1);
+};
+// Ajout du code pour gérer les clics sur les points
+const dots = document.querySelectorAll('.dot');
+
+dots.forEach((dot, index) => {
+	dot.onclick = function () {
+		showimg(index);
+	};
+});
+
+function slideindex(i) {// Fonction pour changer droite ou gauche +1 ou -1 l'index de l'image et afficher la nouvelle image
+	index += i;// Incrémente ou décrémente l'index en fonction de la valeur de i
+	console.log("valeur actuelle de l'index :", index); // Afficher la valeur de l'index
+	showimg(index);// Appelle la fonction showimg() pour afficher l'image correspondant au nouvel index
+	showtxt(index);// appelle de la fonction showtxt pour afficher le texte des images.
 }
 
-// Fonction pour afficher une image spécifique du diaporama en fonction de son index
-function showimg(n) {
-
-	// Sélectionne toutes les images du diaporama par leur classe "banner-img" et les stocke dans la variable x
-	var x = document.getElementsByClassName("banner-img");
-	// Sélectionne tous les indicateurs de position par leur classe "dot" et les stocke dans la variable y
-	var y = document.getElementsByClassName("dot");
-	// Stocke la longueur de la collection d'images dans la variable len
-	var len = x.length;
-
-	// Si l'index est supérieur ou égal au nombre total d'images, ajuste l'index pour rester dans les limites
-	if (n >= x.length) {
-		n %= len; // Modulo pour revenir au début du diaporama si nécessaire
+function showimg(index) {// Fonction pour afficher une image spécifique du diaporama en fonction de son index
+	var x = document.getElementsByClassName("banner-slide");// Sélectionne toutes les images du diaporama par leur classe "banner-slide" et les stocke dans la variable x
+	var y = document.getElementsByClassName("dot");// Sélectionne tous les indicateurs de position par leur classe "dot" et les stocke dans la variable y
+	var len = x.length;// Stocke la longueur de la collection d'images dans la variable len
+	if (index >= x.length) {// Si l'index est supérieur ou égal au nombre total d'images, ajuste l'index pour rester dans les limites
+		index %= len; // Modulo pour revenir au début du diaporama si nécessaire
 	}
-	// Si l'index est négatif, ajuste l'index pour afficher la dernière image du diaporama
-	else if (n < 0) {
-		n = len - 1;
+	else if (index < 0) {
+		index = len - 1;// Si l'index est négatif, ajuste l'index pour afficher la dernière image du diaporama
 	}
-
-	// Masque toutes les images du diaporama et réinitialise l'apparence des indicateurs de position
-	for (var i = 0; i < x.length; i++) {
+	for (var i = 0; i < x.length; i++) {// Masque toutes les images du diaporama et réinitialise l'apparence des indicateurs de position
 		x[i].style.display = "none"; // Masque l'image
-
 		y[i].style.background = ""; // Réinitialise l'arrière-plan de l'indicateur de position
 	}
-
-	// Affiche l'image correspondant à l'index n
-	x[n].style.display = "block"; // Affiche l'image
-	y[n].style.background = "#fff"; // Met en surbrillance l'indicateur de position correspondant
-
-	// Met à jour la variable index avec le nouvel index
-	index = n;
+	// Affiche l'image correspondant à l'index "index"
+	x[index].style.display = "block"; // Affiche l'image
+	y[index].style.background = "#fff"; // Met en surbrillance l'indicateur de position correspondant
 }
 
-// Fonction pour démarrer le défilement automatique du diaporama
-function slide() {
-	// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
+
+function slide() {// Fonction pour démarrer le défilement automatique du diaporama
+
 	setInterval(function () {
 		slideindex(1);
-	}, 3000);
+	}, 3000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
 }
