@@ -1,5 +1,5 @@
 var index = 0;// Déclaration de la variable index qui représente l'index de l'image actuellement affichée
-slide(); // Appel de la fonction slide() lors du chargement de la page pour démarrer le défilement automatique du diaporama
+startup(); // Appel de la fonction startup() lors du chargement de la page pour démarrer le défilement automatique du diaporama
 
 
 // Ajout du code pour gérer les clics sur les flèches
@@ -20,9 +20,12 @@ dots.forEach((dot, index) => {
 		showimg(index);
 	};
 });
-
-function slideindex(i) {// Fonction pour changer droite ou gauche +1 ou -1 l'index de l'image et afficher la nouvelle image
-	index += i;// Incrémente ou décrémente l'index en fonction de la valeur de i
+/**
+ * afficher la prochaine vignette en fonction du pas defini en parametre.
+ * @param {*} step valeur du pas de decalage changer de vignette. cette valeur peut etre positive ou negative. 
+ */
+function slideindex(step) {
+	index += step;// Incrémente ou décrémente l'index en fonction de la valeur de step
 	console.log("valeur actuelle de l'index :", index); // Afficher la valeur de l'index
 	showimg(index);// Appelle la fonction showimg() pour afficher l'image correspondant au nouvel index
 	showtxt(index);// appelle de la fonction showtxt pour afficher le texte des images.
@@ -53,8 +56,8 @@ function showimg(index) {// Fonction pour afficher une image spécifique du diap
 }
 
 
-function slide() {// Fonction pour démarrer le défilement automatique du diaporama
-
+function startup() {// Fonction pour démarrer le défilement automatique du diaporama
+	slideindex(0)
 	setInterval(function () {
 		slideindex(1);
 	}, 3000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
