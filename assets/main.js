@@ -3,51 +3,49 @@
  * Point d'entrée, c'est lui qui intialise le carousel
  * 
  *********************************************************************************/
-var index = 0;
-slide();
+let index = 0;
+startup();
 
 document.querySelector('.arrow_left').onclick = function () {
     slideindex(-1);
-    console.log("fleche left=", slideindex);
 };
-
 document.querySelector('.arrow_right').onclick = function () {
-    console.log("fleche right=", slideindex);
     slideindex(1);
 };
-const dots = document.querySelectorAll('.dot');
+console.log(slideindex)
 
+const dots = document.querySelectorAll('.dot');
 dots.forEach((dot, index) => {
     dot.onclick = function () {
         showimg(index);
     };
 });
 
-function slideindex(i) {
-    index += i;
-    console.log("valeur actuelle de l'index :", index);
+function slideindex(step) {
+    index += step;
+    console.log("current index value:", index);
+    if (index > 3) { index = 0; }
+    else if (index < 0) { index = 3; }
+    console.log("index apres modif", index)
     showimg(index);
     showtxt(index);
 }
+
 function showtxt(index) {
-    console.log("position dans showtxt:", index); // Afficher la valeur de l'index
+
     let bannerImages = document.getElementsByClassName("banner-slide");
+    console.log(bannerImages)
+
     let textOverlay = bannerImages[index].getElementsByClassName("text-overlay")[0];
     textOverlay.innerHTML = txt[index].tagLine;
 }
 
-
 function showimg(index) {
-    var x = document.getElementsByClassName("banner-slide");
-    var y = document.getElementsByClassName("dot");
-    var len = x.length;
-    if (index >= x.length) {
-        index %= len;
-    }
-    else if (index < 0) {
-        index = len - 1;
-    }
-    for (var i = 0; i < x.length; i++) {
+    let x = document.getElementsByClassName("banner-slide");
+    let y = document.getElementsByClassName("dot");
+
+
+    for (let i = 0; i < x.length; i++) {
         x[i].style.display = "none";
         y[i].style.background = "";
     }
@@ -55,7 +53,8 @@ function showimg(index) {
     y[index].style.background = "#fff";
 }
 
-function slide() {
+function startup() {
+    slideindex(0)
     setInterval(function () {
         slideindex(1);
     }, 3000);
@@ -64,7 +63,7 @@ function slide() {
 
 /*voici une explication technique détaillée du fonctionnement du programme :
 
-1. **Initialisation :** Au démarrage, le programme initialise la variable `index` à zéro, représentant l'index de l'image actuellement affichée.
+1. **Initialisation :** Au démarrage, le programme initialise la letiable `index` à zéro, représentant l'index de l'image actuellement affichée.
 
 2. **Fonction Slide :** Une fonction appelée `slide()` est définie pour démarrer le défilement automatique du diaporama. Elle utilise `setInterval()` 
 pour appeler la fonction `slideindex(1)` toutes les 3000 millisecondes.
