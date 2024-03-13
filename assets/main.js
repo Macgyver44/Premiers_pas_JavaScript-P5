@@ -8,38 +8,45 @@ startup();
 
 document.querySelector('.arrow_left').onclick = function () {
     slideindex(-1);
+    console.log("fleche left=", slideindex);
 };
+
 document.querySelector('.arrow_right').onclick = function () {
     slideindex(1);
+    console.log("fleche right=", slideindex);
 };
-console.log(slideindex)
 
 const dots = document.querySelectorAll('.dot');
+
 dots.forEach((dot, index) => {
     dot.onclick = function () {
         showimg(index);
     };
 });
-
+/**
+ * afficher la prochaine vignette en fonction du pas defini en parametre.
+ * @param {*} step valeur du pas de decalage changer de vignette. cette valeur peut etre positive ou negative. 
+ */
 function slideindex(step) {
     index += step;
-    console.log("current index value:", index);
+    console.log("valeur actuelle de l'index :", index);
     if (index > 3) { index = 0; }
     else if (index < 0) { index = 3; }
     console.log("index apres modif", index)
     showimg(index);
     showtxt(index);
 }
-
 function showtxt(index) {
 
     let bannerImages = document.getElementsByClassName("banner-slide");
+
     console.log(bannerImages)
-
     let textOverlay = bannerImages[index].getElementsByClassName("text-overlay")[0];
+    console.log(textOverlay)
     textOverlay.innerHTML = txt[index].tagLine;
-}
 
+
+}
 function showimg(index) {
     let x = document.getElementsByClassName("banner-slide");
     let y = document.getElementsByClassName("dot");
@@ -48,10 +55,13 @@ function showimg(index) {
     for (let i = 0; i < x.length; i++) {
         x[i].style.display = "none";
         y[i].style.background = "";
+        console.log(i)
     }
+
     x[index].style.display = "block";
     y[index].style.background = "#fff";
 }
+
 
 function startup() {
     slideindex(0)
@@ -61,9 +71,10 @@ function startup() {
 }
 
 
+
 /*voici une explication technique détaillée du fonctionnement du programme :
 
-1. **Initialisation :** Au démarrage, le programme initialise la letiable `index` à zéro, représentant l'index de l'image actuellement affichée.
+1. **Initialisation :** Au démarrage, le programme initialise la  variable `index` à zéro, représentant l'index de l'image actuellement affichée.
 
 2. **Fonction Slide :** Une fonction appelée `slide()` est définie pour démarrer le défilement automatique du diaporama. Elle utilise `setInterval()` 
 pour appeler la fonction `slideindex(1)` toutes les 3000 millisecondes.

@@ -12,11 +12,14 @@ document.querySelector('.arrow_right').onclick = function () {
 };
 // Ajout du code pour gérer les clics sur les points
 const dots = document.querySelectorAll('.dot');
+console.log("Valeur de la variable DOTS =", dots);
 
-dots.forEach((dot, index) => {
+dots.forEach((dot, index) => {//Pour chacun d'eux, je vais les appeler "dot" et "index".
+
 	dot.onclick = function () {
-		showimg(index);
+		showimg(index); //appel la fonction showimg a l'index actuel.
 	};
+
 });
 /**
  * afficher la prochaine vignette en fonction du pas defini en parametre.
@@ -24,10 +27,11 @@ dots.forEach((dot, index) => {
  */
 function slideindex(step) {
 	index += step;// Incrémente ou décrémente l'index en fonction de la valeur de step
-	console.log("valeur actuelle de l'index :", index); // Afficher la valeur de l'index
+	console.log("valeur actuelle de STEP :", step)
+	console.log("valeur actuelle de l'index :", index);
 	if (index > 3) { index = 0; }
 	else if (index < 0) { index = 3; }
-	console.log("index apres modif", index)
+	console.log("index apres délimitation", index)
 	showimg(index);// Appelle la fonction showimg() pour afficher l'image correspondant au nouvel index
 	showtxt(index);// appelle de la fonction showtxt pour afficher le texte des images.
 }
@@ -35,22 +39,28 @@ function showtxt(index) {
 
 	let bannerImages = document.getElementsByClassName("banner-slide");
 
-	console.log(bannerImages)
+	console.log("valeur actuelle de bannerimages :", bannerImages);
+
 	let textOverlay = bannerImages[index].getElementsByClassName("text-overlay")[0];
-	console.log(textOverlay)
+	// Cette ligne sélectionne le premier élément avec la classe "text-overlay" à l'intérieur de l'élément bannerImages[index] 
+	//(basé sur la valeur de l'index fournie) et stocke cette référence dans la variable textOverlay.
+
+	console.log("valeur actuelle de texteoverlay :", textOverlay);
+
 	textOverlay.innerHTML = txt[index].tagLine;
 
 
 }
 function showimg(index) {
-	let x = document.getElementsByClassName("banner-slide");// Sélectionne toutes les images du diaporama par leur classe "banner-slide" et les stocke dans la letiable x
-	let y = document.getElementsByClassName("dot");// Sélectionne tous les indicateurs de position par leur classe "dot" et les stocke dans la letiable y
+	let x = document.getElementsByClassName("banner-slide");
+	let y = document.getElementsByClassName("dot");
+	console.log("valeur actuelle de X et Y :", x, y);
 
 
 	for (let i = 0; i < x.length; i++) {
-		x[i].style.display = "none"; // Masque toutes les images du diaporama
-		y[i].style.background = ""; // Réinitialise l'arrière-plan de l'indicateur de position
-		console.log(i)
+		x[i].style.display = "none";
+		y[i].style.background = "";
+		console.log("valeur actuelle de I :", i)
 	}
 
 	x[index].style.display = "block"; // Affiche l'image correspondant à l'index "index"
@@ -60,7 +70,8 @@ function showimg(index) {
 
 function startup() {// Fonction pour démarrer le défilement automatique du diaporama
 	slideindex(0)
+
 	setInterval(function () {
 		slideindex(1);
-	}, 3000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
+	}, 10000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
 }
