@@ -73,5 +73,5 @@ function startup() {// Fonction pour démarrer le défilement automatique du dia
 
 	setInterval(function () {
 		slideindex(1);
-	}, 10000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
+	}, 3000);// Appelle la fonction slideindex(1) toutes les 3000 millisecondes (3 secondes) pour faire défiler le diaporama automatiquement
 }
